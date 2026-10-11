@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Projetos
+{% endblock %}
+
+{% block content %}
+
+<h1>Projetos</h1>
+
+<a href="{% url 'criar_projeto' %}" class="botao">
+    + Novo Projeto
+</a>
+
+{% if projetos %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Data de início</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for projeto in projetos %}
+
+        <tr>
+            <td>{{ projeto.nome }}</td>
+
+            <td>{{ projeto.descricao }}</td>
+
+            <td>{{ projeto.data_inicio|date:"d/m/Y" }}</td>
+
+            <td>
+                <a
+                    href="{% url 'editar_projeto' projeto.pk %}"
+                    class="botao"
+                >
+                    Editar
+                </a>
+
+                <a
+                    href="{% url 'excluir_projeto' projeto.pk %}"
+                    class="botao excluir"
+                >
+                    Excluir
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% else %}
+
+<p>Nenhum projeto cadastrado.</p>
+
+{% endif %}
+
+{% endblock %}

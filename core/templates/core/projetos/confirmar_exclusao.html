@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Excluir Projeto
+{% endblock %}
+
+{% block content %}
+
+<h1>Excluir Projeto</h1>
+
+<p>
+    Tem certeza que deseja excluir o projeto
+    <strong>{{ projeto.nome }}</strong>?
+</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <button type="submit" class="botao excluir">
+        Sim, excluir
+    </button>
+
+    <a href="{% url 'lista_projetos' %}" class="botao">
+        Cancelar
+    </a>
+
+</form>
+
+{% endblock %}
